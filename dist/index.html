@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Krub:wght@300;400;600&display=swap");
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script defer src="main.js"></script>
-</head>
-<body>
-    <div id="content"></div>
-</body>
+  </head>
+  <body>
+    <nav>
+      <div id="nav-txt">Todo App</div>
+    </nav>
+    <main>
+      <aside>
+        <div id="aside-btn-wrapper">
+          <button class="btn-aside" id="btn-task">Task</button>
+          <button class="btn-aside" id="btn-task">Project</button>
+          <button class="btn-aside" id="btn-task">Notes</button>
+          <button class="btn-aside" id="btn-task">Calendar</button>
+        </div>
+      </aside>
+
+      <div id="content"></div>
+    </main>
+    <div id="form-wrapper" class="hidden">
+      <form id="form-new-task" onsubmit="return false;">
+        <label for="name"><b>Task name</b></label>
+        <input
+          type="text"
+          placeholder="Description of tax 3-20 letters"
+          name="name"
+          id="name"
+          minlength="3"
+          maxlength="20"
+          required
+        />
+        <label for="date"><b>Date</b></label>
+        <input type="date" name="date" id="date" required />
+        <div id="form-btn-wrapper">
+          <button class="btn-form" id="form-btn-add">Add Task</button>
+          <button type="button" class="btn-form" id="form-btn-cancel">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
