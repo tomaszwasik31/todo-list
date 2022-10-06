@@ -26,9 +26,10 @@ const { id } = require("date-fns/locale");
 
 const taskPage = () => {
   const content = document.querySelector("#content");
+  let taskIndex = 1;
 
   const createDiv = (attribute, name) => {
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.setAttribute(attribute, name);
     return div;
   };
@@ -53,27 +54,20 @@ const taskPage = () => {
 
   let taskArray = [task1, task2, task3];
 
-  const createTaskDiv = (task) => {
+  const createTaskDiv = () => {
     const taskWrapper = document.querySelector("#task-wrapper");
 
-    taskWrapper.appendChild(
-      createDiv("class", "task")
-    ).innerHTML = `${task.name}
-    <div class="task-btn-wrapper">
-      <button class="task-btn edit">
-        <img class="icon" src="./img/edit.svg" alt="edit" />
-      </button>
-      <button class="task-btn status">
-        <img class="icon" src="./img/tick.svg" alt="status" />
-      </button>
-      <button class="task-btn delete">
-        <img class="icon" src="./img/delete.svg" alt="delete" />
-      </button>
-    </div>
-    <div class="task-date">Due: ${task.date}</div>
-  `;
+    taskWrapper
+      .appendChild(createDiv("class", "task"))
+      .setAttribute("id", `task-${taskIndex}`);
+    renderTaskContent(taskIndex);
+    taskIndex++;
   };
 
+  const renderTaskContent = (index) => {
+    const currentDiv = document.querySelector(`#task-${index}`);
+    console.log(currentDiv);
+  };
   const renderAddBtn = () => {
     const taskWrapper = document.querySelector("#task-wrapper");
     taskWrapper.appendChild(createDiv("id", "add-task-btn")).innerText =
@@ -81,6 +75,7 @@ const taskPage = () => {
   };
 
   const renderAllTask = () => {
+    taskIndex = 1;
     taskArray.forEach((e) => {
       createTaskDiv(e);
     });
@@ -107,10 +102,9 @@ const taskPage = () => {
     cancelBtn.addEventListener("click", hideForm);
 
     const statusTask = document.querySelectorAll(".status");
-    statusTask.forEach((e)=>{
+    statusTask.forEach((e) => {
       e.addEventListener("click", toggleStatus);
-    })
-    
+    });
   };
 
   renderContentTitle("Your task to do");
