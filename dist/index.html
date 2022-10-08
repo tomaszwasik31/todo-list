@@ -19,36 +19,42 @@
     <main>
       <aside>
         <div id="aside-btn-wrapper">
-          <button class="btn-aside" id="btn-task">Task</button>
-          <button class="btn-aside" id="btn-task">Project</button>
-          <button class="btn-aside" id="btn-task">Notes</button>
-          <button class="btn-aside" id="btn-task">Calendar</button>
+          <button class="btn" id="btn-task">Task</button>
+          <button class="btn" id="btn-task">Project</button>
+          <button class="btn" id="btn-task">Notes</button>
+          <button class="btn" id="btn-task">Calendar</button>
         </div>
       </aside>
 
-      <div id="content"></div>
+      <div id="content">
+        
+      </div>
     </main>
-    <div id="form-wrapper" class="hidden">
-      <form id="form-new-task" onsubmit="return false;">
-        <label for="name"><b>Task name</b></label>
-        <input
-          type="text"
-          placeholder="Description of tax 3-20 letters"
-          name="name"
-          id="name"
-          minlength="3"
-          maxlength="20"
-          required
-        />
-        <label for="date"><b>Date</b></label>
-        <input type="date" name="date" id="date" required />
-        <div id="form-btn-wrapper">
-          <button class="btn-form" id="form-btn-add">Add Task</button>
-          <button type="button" class="btn-form" id="form-btn-cancel">
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
   </body>
 </html>
+
+<!-- <div id="form-wrapper">
+    <form id="form-new-task">
+      <label for="name"><b>Task name</b></label>
+      <input
+        type="text"
+        placeholder="Description of tax 3-20 letters"
+        name="name"
+        id="name"
+        minlength="3"
+        maxlength="20"
+        required
+      />
+      <label for="date"><b>Date</b></label>
+      <input type="date" name="date" id="date" required />
+      <div id="form-btn-wrapper">
+        <button type="submit" class="btn-form" id="form-btn-add">
+          Add Task
+        </button>
+        <button type="button" class="btn-form" id="form-btn-cancel">
+          Cancel
+        </button>
+      </div>
+    </form>
+    
+  </div> -->
