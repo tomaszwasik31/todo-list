@@ -230,6 +230,9 @@ const taskPage = () => {
   const renderContainer = (task) => {
     const container = document.createElement("div");
     container.classList.add("container");
+    if (task.status==true){
+      container.classList.add("task-done");
+    }
     container.id = `task-${taskIndex}`;
     content.appendChild(container);
 
@@ -320,16 +323,28 @@ const taskPage = () => {
     // const cancelBtn = document.querySelector("#form-btn-cancel");
     // cancelBtn.addEventListener("click", hideFormNew);
 
-    // const statusTask = document.querySelectorAll(".status");
-    // statusTask.forEach((e) => {
-    //   e.addEventListener("click", toggleStatus);
-    // });
+    const statusTask = document.querySelectorAll(".status");
+    statusTask.forEach((e) => {
+      e.addEventListener("click", changeStatus);
+    });
 
     const deleteTask = document.querySelectorAll(".delete");
     deleteTask.forEach((e) => {
       e.addEventListener("click", deleteStatus);
     });
   };
+
+  const changeStatus = (e) => {
+    getIndex(e);
+    if (taskArray[index].status == true) {
+      taskArray[index].status = false;
+    } else {
+      taskArray[index].status = true;
+    }
+
+    renderAll();
+  };
+
   const deleteStatus = (e) => {
     getIndex(e);
     taskArray.splice(index, 1);
