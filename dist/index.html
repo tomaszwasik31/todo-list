@@ -26,16 +26,63 @@
         </div>
       </aside>
 
-      <div id="content">
-        
-      </div>
+      <div id="content"></div>
     </main>
+
+    <div class="form-wrapper hidden">
+      <form id="form-new-task">
+        <div>
+          <label for="name">Task name</label>
+          <input
+            type="text"
+            placeholder="Name of task 3-20 letters"
+            name="name"
+            id="name"
+            minlength="3"
+            maxlength="20"
+            required
+          />
+        </div>
+        <div>
+          <label for="project-name">Part of project</label>
+          <select id="project-name" name="project-name" size="1">
+            <option value="none">None</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority" size="1">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" required />
+        </div>
+        <div id="description-div">
+          <label for="description">Description</label>
+          <textarea rows="25" name="description">
+          Enter text here...</textarea
+          >
+        </div>
+        <div id="form-btn-wrapper">
+          <button type="submit" class="btn" id="form-btn-add">Add Task</button>
+          <button type="button" class="btn" id="form-btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
 
 <!-- <div id="form-wrapper">
     <form id="form-new-task">
-      <label for="name"><b>Task name</b></label>
+      <label for="name">Task name</label>
       <input
         type="text"
         placeholder="Description of tax 3-20 letters"
@@ -45,7 +92,7 @@
         maxlength="20"
         required
       />
-      <label for="date"><b>Date</b></label>
+      <label for="date">Date</b></label>
       <input type="date" name="date" id="date" required />
       <div id="form-btn-wrapper">
         <button type="submit" class="btn-form" id="form-btn-add">

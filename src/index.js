@@ -1,6 +1,6 @@
 // const taskPage = () => {
 //   const content = document.querySelector("#content");
-//   let taskIndex = 1;
+//   let index = 1;
 
 //   class Task {
 //     constructor(name, date, status) {
@@ -34,16 +34,16 @@
 //     if (task.status == false) {
 //       taskWrapper
 //         .appendChild(createDiv("class", "task"))
-//         .setAttribute("id", `task-${taskIndex}`);
-//       renderTaskContent(taskIndex);
+//         .setAttribute("id", `task-${index}`);
+//       renderTaskContent(index);
 //     } else {
 //       taskWrapper
 //         .appendChild(createDiv("class", "task done"))
-//         .setAttribute("id", `task-${taskIndex}`);
-//       renderTaskContent(taskIndex);
+//         .setAttribute("id", `task-${index}`);
+//       renderTaskContent(index);
 //     }
 
-//     taskIndex++;
+//     index++;
 //   };
 
 //   const renderTaskContent = (index) => {
@@ -68,7 +68,7 @@
 //   };
 
 //   const renderAllTask = () => {
-//     taskIndex = 1;
+//     index = 1;
 //     taskArray.forEach((e) => {
 //       createTaskDiv(e);
 //     });
@@ -105,7 +105,7 @@
 //     const form = document.querySelector("#form-new-task");
 //     form.reset();
 //   };
-//   const showFormNew = () => {
+//   const showHideForm = () => {
 //     const form = document.querySelector("#form-wrapper");
 //     form.style.display = "flex";
 //   };
@@ -117,10 +117,10 @@
 
 //   window.onload = () => {
 //     const form = document.querySelector("#form-new-task");
-//     form.onsubmit = submitted;
+//     form.onsubmit = submittedNewTask;
 //   };
 
-//   const submitted = (event) => {
+//   const submittedNewTask = (event) => {
 //     event.preventDefault();
 //     const taskName = document.querySelector("[name='name']").value;
 //     const taskDate = document.querySelector("[name='date']").value;
@@ -133,7 +133,7 @@
 
 //   const bindEvents = () => {
 //     const newTaskBtn = document.querySelector("#add-task-btn");
-//     newTaskBtn.addEventListener("click", showFormNew);
+//     newTaskBtn.addEventListener("click", showHideForm);
 
 //     const cancelBtn = document.querySelector("#form-btn-cancel");
 //     cancelBtn.addEventListener("click", hideFormNew);
@@ -190,10 +190,11 @@
 }
 
 class Task {
-  constructor(name, projectName, date, description, status) {
+  constructor(name, projectName, date, priority, description, status) {
     this.name = name;
     this.projectName = projectName;
     this.date = date;
+    this.priority = priority;
     this.description = description;
     this.status = status;
   }
@@ -204,6 +205,7 @@ let taskArray = [
     "Do dishes",
     "household duties",
     "2022-10-30",
+    "low",
     "lorem ipusm lorem lorem lorem lorem",
     true
   ),
@@ -211,6 +213,7 @@ let taskArray = [
     "Walk a dog",
     "household duties",
     "2022-10-30",
+    "medium",
     "lorem ipusm lorem lorem lorem lorem",
     false
   ),
@@ -218,22 +221,23 @@ let taskArray = [
     "Learn Portuguese",
     "Learning",
     "2022-10-30",
+    "high",
     "lorem ipusm lorem lorem lorem lorem",
     false
   ),
 ];
 const taskPage = () => {
   const content = document.querySelector("#content");
-  let taskIndex;
+
   let index;
 
-  const renderContainer = (task) => {
+  const renderTask = (task) => {
     const container = document.createElement("div");
     container.classList.add("container");
-    if (task.status==true){
+    if (task.status == true) {
       container.classList.add("task-done");
     }
-    container.id = `task-${taskIndex}`;
+    container.id = `task-${index}`;
     content.appendChild(container);
 
     renderData(container, task);
@@ -246,10 +250,10 @@ const taskPage = () => {
   };
 
   const renderAllTask = () => {
-    taskIndex = 1;
+    index = 1;
     taskArray.forEach((e) => {
-      renderContainer(e);
-      taskIndex++;
+      renderTask(e);
+      index++;
     });
   };
   const renderAddBtn = () => {
@@ -306,8 +310,8 @@ const taskPage = () => {
     container.appendChild(projectDate);
 
     const priority = document.createElement("p");
-    priority.classList.add("priority", "low");
-    priority.innerText = "low";
+    priority.classList.add("priority", `${task.priority}`);
+    priority.innerText = task.priority;
     container.appendChild(priority);
 
     const txt = document.createElement("p");
@@ -317,11 +321,11 @@ const taskPage = () => {
   };
 
   const bindEvents = () => {
-    // const newTaskBtn = document.querySelector("#add-task-btn");
-    // newTaskBtn.addEventListener("click", showFormNew);
+    const newTaskBtn = document.querySelector("#add-task-btn");
+    newTaskBtn.addEventListener("click", showHideForm);
 
-    // const cancelBtn = document.querySelector("#form-btn-cancel");
-    // cancelBtn.addEventListener("click", hideFormNew);
+    const cancelBtn = document.querySelector("#form-btn-cancel");
+    cancelBtn.addEventListener("click", showHideForm);
 
     const statusTask = document.querySelectorAll(".status");
     statusTask.forEach((e) => {
@@ -332,6 +336,11 @@ const taskPage = () => {
     deleteTask.forEach((e) => {
       e.addEventListener("click", deleteStatus);
     });
+  };
+
+  const showHideForm = () => {
+    const form = document.querySelector(".form-wrapper");
+    form.classList.toggle("hidden");
   };
 
   const changeStatus = (e) => {
@@ -356,6 +365,41 @@ const taskPage = () => {
   };
   const clearContent = () => {
     content.innerHTML = "";
+  };
+
+  window.onload = () => {
+    const form = document.querySelector("#form-new-task");
+    form.onsubmit = submittedNewTask;
+  };
+
+  const submittedNewTask = (event) => {
+    event.preventDefault();
+    const taskName = document.querySelector("[name='name']").value;
+    const projectName = document.querySelector("[name='project-name']").value;
+    const taskDate = document.querySelector("[name='date']").value;
+    const taskPriority = document.querySelector("[name='priority']").value;
+    const taskDescription = document.querySelector(
+      "[name='description']"
+    ).value;
+
+    taskArray.push(
+      new Task(
+        taskName,
+        projectName,
+        taskDate,
+        taskPriority,
+        taskDescription,
+        false
+      )
+    );
+    renderAll();
+    resetForm();
+    showHideForm();
+  };
+
+  const resetForm = () => {
+    const form = document.querySelector("#form-new-task");
+    form.reset();
   };
   const renderAll = () => {
     clearContent();
