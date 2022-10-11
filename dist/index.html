@@ -30,7 +30,7 @@
     </main>
 
     <div class="form-wrapper hidden">
-      <form id="form-new-task">
+      <form id="form">
         <div>
           <label for="name">Task name</label>
           <input
@@ -46,8 +46,8 @@
         <div>
           <label for="project-name">Part of project</label>
           <select id="project-name" name="project-name" size="1">
-            <option value="none">None</option>
-            <option value="saab">Saab</option>
+            <option id="none" value="none">None</option>
+            <option id="saab" value="saab">Saab</option>
             <option value="fiat">Fiat</option>
             <option value="audi">Audi</option>
           </select>
@@ -56,9 +56,9 @@
         <div>
           <label for="priority">Priority</label>
           <select id="priority" name="priority" size="1">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
+            <option id="low" value="low">Low</option>
+            <option id="medium" value="medium">Medium</option>
+            <option id="high" value="high">High</option>
           </select>
         </div>
         <div>
@@ -73,6 +73,7 @@
         </div>
         <div id="form-btn-wrapper">
           <button type="submit" class="btn" id="form-btn-add">Add Task</button>
+          <button type="submit" class="btn hidden" id="form-btn-edit">Edit Task</button>
           <button type="button" class="btn" id="form-btn-cancel">Cancel</button>
         </div>
       </form>

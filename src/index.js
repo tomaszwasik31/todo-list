@@ -78,7 +78,7 @@
 //     taskWrapper.innerHTML = "";
 //   };
 
-//   const editStatus = (e) => {
+//   const editForm = (e) => {
 //     const index =
 //       e.currentTarget.parentNode.parentNode.id.replace(/\D/g, "") - 1;
 //   };
@@ -102,7 +102,7 @@
 //     renderAll();
 //   };
 //   const resetForm = () => {
-//     const form = document.querySelector("#form-new-task");
+//     const form = document.querySelector("#form");
 //     form.reset();
 //   };
 //   const showHideForm = () => {
@@ -116,7 +116,7 @@
 //   };
 
 //   window.onload = () => {
-//     const form = document.querySelector("#form-new-task");
+//     const form = document.querySelector("#form");
 //     form.onsubmit = submittedNewTask;
 //   };
 
@@ -163,8 +163,8 @@
 // taskPage();
 
 // =================================
-{
-  /* <div class="container">
+
+/* <div class="container">
           <p class="name">Title title</p>
           <p class="project-name">Part of project: Project name</p>
           <p class="date">Due: 2022-10-30</p>
@@ -187,7 +187,6 @@
         </div>
        
         <div id="add-task-btn" class="btn">+ Add new task</div> */
-}
 
 class Task {
   constructor(name, projectName, date, priority, description, status) {
@@ -228,7 +227,8 @@ let taskArray = [
 ];
 const taskPage = () => {
   const content = document.querySelector("#content");
-
+  const formAddBtn = document.querySelector("#form-btn-add");
+  const formEditBtn = document.querySelector("#form-btn-edit");
   let index;
 
   const renderTask = (task) => {
@@ -322,7 +322,7 @@ const taskPage = () => {
 
   const bindEvents = () => {
     const newTaskBtn = document.querySelector("#add-task-btn");
-    newTaskBtn.addEventListener("click", showHideForm);
+    newTaskBtn.addEventListener("click", newTaskForm);
 
     const cancelBtn = document.querySelector("#form-btn-cancel");
     cancelBtn.addEventListener("click", showHideForm);
@@ -336,9 +336,25 @@ const taskPage = () => {
     deleteTask.forEach((e) => {
       e.addEventListener("click", deleteStatus);
     });
+
+    const editTask = document.querySelectorAll(".edit");
+    editTask.forEach((e) => {
+      e.addEventListener("click", editForm);
+    });
+  };
+
+  const newTaskForm = () => {
+    showHideForm();
+
+    //check and hide correct btn
+    if (formAddBtn.classList.contains("hidden")) {
+      formAddBtn.classList.toggle("hidden");
+      formEditBtn.classList.toggle("hidden");
+    }
   };
 
   const showHideForm = () => {
+    resetForm();
     const form = document.querySelector(".form-wrapper");
     form.classList.toggle("hidden");
   };
@@ -368,7 +384,7 @@ const taskPage = () => {
   };
 
   window.onload = () => {
-    const form = document.querySelector("#form-new-task");
+    const form = document.querySelector("#form");
     form.onsubmit = submittedNewTask;
   };
 
@@ -392,13 +408,33 @@ const taskPage = () => {
         false
       )
     );
+
     renderAll();
-    resetForm();
     showHideForm();
   };
 
+  const editForm = (e) => {
+    getIndex(e);
+    showHideForm();
+
+    document.querySelector("[name='name']").value = taskArray[index].name;
+    // document.querySelector(`${taskArray[index].projectName}`).setAttribute("selected", "selected");
+    document
+      .querySelector(`#${taskArray[index].priority}`)
+      .setAttribute("selected", "selected");
+    document.querySelector("[name='date']").value = taskArray[index].date;
+    document.querySelector("[name='description']").value =
+      taskArray[index].description;
+
+    //check and hide correct btn
+    if (!formAddBtn.classList.contains("hidden")) {
+      formAddBtn.classList.toggle("hidden");
+      formEditBtn.classList.toggle("hidden");
+    }
+  };
+
   const resetForm = () => {
-    const form = document.querySelector("#form-new-task");
+    const form = document.querySelector("#form");
     form.reset();
   };
   const renderAll = () => {
