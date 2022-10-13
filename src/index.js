@@ -230,6 +230,7 @@ const taskPage = () => {
   const formAddBtn = document.querySelector("#form-btn-add");
   const formEditBtn = document.querySelector("#form-btn-edit");
   let index;
+  let editMode = false;
 
   const renderTask = (task) => {
     const container = document.createElement("div");
@@ -397,17 +398,29 @@ const taskPage = () => {
     const taskDescription = document.querySelector(
       "[name='description']"
     ).value;
-
-    taskArray.push(
-      new Task(
+    if (!editMode) {
+      taskArray.push(
+        new Task(
+          taskName,
+          projectName,
+          taskDate,
+          taskPriority,
+          taskDescription,
+          false
+        )
+      );
+    } else {
+      taskArray[index] = new Task(
         taskName,
         projectName,
         taskDate,
         taskPriority,
         taskDescription,
         false
-      )
-    );
+      );
+      //switch off edit mode
+      editMode = false;
+    }
 
     renderAll();
     showHideForm();
@@ -416,7 +429,7 @@ const taskPage = () => {
   const editForm = (e) => {
     getIndex(e);
     showHideForm();
-
+    editMode = true;
     document.querySelector("[name='name']").value = taskArray[index].name;
     // document.querySelector(`${taskArray[index].projectName}`).setAttribute("selected", "selected");
     document
