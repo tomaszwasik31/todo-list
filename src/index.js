@@ -1,4 +1,4 @@
-import projectsPage from "./projects";
+import renderProjectsPage from "./projects";
 import renderTaskPage from "./task";
 
 const content = document.querySelector("#content");
@@ -73,14 +73,16 @@ const clearContent = () => {
   content.innerHTML = "";
 };
 
+const bindMenuEvents = () => {
+  const projectsBtn = document.querySelector("#btn-projects");
+  projectsBtn.addEventListener("click", renderProjectsPage);
+
+  const taskBtn = document.querySelector("#btn-task");
+  taskBtn.addEventListener("click", renderTaskPage);
+};
+bindMenuEvents();
+
 renderTaskPage();
-
-// bindMenuEvents();
-
-// const bindMenuEvents = () => {
-//   const projectsTab = document.querySelector("#btn-projects");
-//   projectsTab.addEventListener("click", renderProjectsPage);
-// };
 
 export {
   Task,

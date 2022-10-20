@@ -10,7 +10,7 @@ import {
 } from "./index";
 
 const renderTaskPage = () => {
- 
+ clearContent();
   const formAddBtn = document.querySelector("#form-btn-add");
   const formEditBtn = document.querySelector("#form-btn-edit");
   let index;
