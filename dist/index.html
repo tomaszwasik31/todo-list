@@ -45,12 +45,7 @@
         </div>
         <div>
           <label for="project-name">Part of project</label>
-          <select id="project-name" name="project-name" size="1">
-            <!-- <option id="none" value="none">None</option>
-            <option id="saab" value="saab">Saab</option>
-            <option value="fiat">Fiat</option>
-            <option value="audi">Audi</option> -->
-          </select>
+          <select id="project-name" name="project-name" size="1"></select>
         </div>
 
         <div>
@@ -73,8 +68,17 @@
         </div>
         <div id="form-btn-wrapper">
           <button type="submit" class="btn" id="form-btn-add">Add Task</button>
-          <button type="submit" class="btn hidden" id="form-btn-edit">Edit Task</button>
-          <button type="button" class="btn" id="form-btn-cancel">Cancel</button>
+          <button type="submit" class="btn hidden" id="form-btn-edit">
+            Edit Task
+          </button>
+          <button
+            type="button"
+            class="btn"
+            id="form-btn-cancel"
+            onsubmit="return false"
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

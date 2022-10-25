@@ -38,11 +38,19 @@ let allTaskArray = [
     "lorem ipusm lorem lorem lorem lorem",
     false
   ),
+  new Task(
+    "Learn Portuguese2",
+    "Learning",
+    "2022-10-30",
+    "high",
+    "lorem ipusm lorem lorem lorem lorem",
+    false
+  ),
 ];
 
-let allProjectsNames;
+
 const getProjectsNames = () => {
-  allProjectsNames = allTaskArray.map((task) => task.projectName);
+  let allProjectsNames = allTaskArray.map((task) => task.projectName);
   //remove duplicates
   allProjectsNames = [...new Set(allProjectsNames)];
 };
@@ -83,6 +91,7 @@ const bindMenuEvents = () => {
 bindMenuEvents();
 
 renderTaskPage();
+
 
 export {
   Task,

@@ -23,15 +23,37 @@ const renderProjectsPage = () => {
   const renderData = (project, container) => {
     const projectName = document.createElement("p");
     projectName.classList.add("name");
-    projectName.innerText = project;
+    projectName.innerText = `Project: '${project}'
+    List:`;
     container.appendChild(projectName);
 
     getTaskList(project);
+
     const tasksOL = document.createElement("ol");
     tasksOL.classList.add("task-list");
     thisProjectTask.forEach((e) => {
       const liElement = document.createElement("li");
-      liElement.innerText = e.name+ e.priority;
+      if (e.status == true) {
+        liElement.classList.add("task-done");
+      }
+
+      const taskName = document.createElement("p");
+      taskName.classList.add("project-name");
+      taskName.innerText = e.name;
+      liElement.appendChild(taskName);
+
+
+      
+
+      const projectDate = document.createElement("p");
+    projectDate.classList.add("date");
+    projectDate.innerText = e.date;
+    liElement.appendChild(projectDate);
+    const priority = document.createElement("p");
+      priority.classList.add("priority", `${e.priority}`);
+      priority.innerText = e.priority;
+      liElement.appendChild(priority);
+
       tasksOL.appendChild(liElement);
     });
     container.appendChild(tasksOL);
@@ -41,7 +63,6 @@ const renderProjectsPage = () => {
     thisProjectTask = allTaskArray.filter(
       (task) => task.projectName == project
     );
-    
   };
   renderAllProjects();
 };

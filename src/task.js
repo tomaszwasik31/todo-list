@@ -1,16 +1,16 @@
 import {
   Task,
   allTaskArray,
-  allProjectsNames,
+ 
   getProjectsNames,
   lowerCaseDashed,
   updateProjects,
   content,
-  clearContent
+  clearContent,
 } from "./index";
 
 const renderTaskPage = () => {
- clearContent();
+  clearContent();
   const formAddBtn = document.querySelector("#form-btn-add");
   const formEditBtn = document.querySelector("#form-btn-edit");
   let index;
@@ -129,19 +129,19 @@ const renderTaskPage = () => {
   };
 
   const newTaskForm = () => {
-    showHideForm();
-
-    //check and hide correct btn
+    // check and hide correct btn
     if (formAddBtn.classList.contains("hidden")) {
       formAddBtn.classList.toggle("hidden");
       formEditBtn.classList.toggle("hidden");
     }
+    showHideForm();
   };
 
   const showHideForm = () => {
-    resetForm();
     const form = document.querySelector(".form-wrapper");
     form.classList.toggle("hidden");
+
+    resetForm();
   };
 
   const changeStatus = (e) => {
@@ -164,7 +164,6 @@ const renderTaskPage = () => {
   const getIndex = (e) => {
     index = e.currentTarget.parentNode.parentNode.id.replace(/\D/g, "") - 1;
   };
- 
 
   window.onload = () => {
     const form = document.querySelector("#form");
@@ -213,7 +212,10 @@ const renderTaskPage = () => {
     showHideForm();
     editMode = true;
     document.querySelector("[name='name']").value = allTaskArray[index].name;
-    // document.querySelector(`${allTaskArray[index].projectName}`).setAttribute("selected", "selected");
+    document
+      .querySelector(`#${lowerCaseDashed(allTaskArray[index].projectName)}`)
+      .setAttribute("selected", "selected");
+
     document
       .querySelector(`#${allTaskArray[index].priority}`)
       .setAttribute("selected", "selected");
