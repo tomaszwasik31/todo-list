@@ -94,6 +94,7 @@ const bindMenuEvents = () => {
 bindMenuEvents();
 
 renderTaskPage();
+renderProjectsPage();
 
 export {
   Task,

@@ -42,14 +42,11 @@ const renderProjectsPage = () => {
       taskName.innerText = e.name;
       liElement.appendChild(taskName);
 
-
-      
-
       const projectDate = document.createElement("p");
-    projectDate.classList.add("date");
-    projectDate.innerText = e.date;
-    liElement.appendChild(projectDate);
-    const priority = document.createElement("p");
+      projectDate.classList.add("date");
+      projectDate.innerText = e.date;
+      liElement.appendChild(projectDate);
+      const priority = document.createElement("p");
       priority.classList.add("priority", `${e.priority}`);
       priority.innerText = e.priority;
       liElement.appendChild(priority);
@@ -64,7 +61,27 @@ const renderProjectsPage = () => {
       (task) => task.projectName == project
     );
   };
+  const renderAddBtn = () => {
+    const addBtn = document.createElement("div");
+    addBtn.classList.add("btn");
+    addBtn.id = "add-task-btn";
+    addBtn.innerText = "+ Add new project";
+    content.appendChild(addBtn);
+  };
+
+  const checkListEmpty = () => {
+    let taskList = document.querySelectorAll(".task-list");
+    taskList.forEach((e)=>{
+      if (e.innerHTML=='')
+      {
+         e.parentNode.remove();
+      }
+    })
+   
+  };
   renderAllProjects();
+  renderAddBtn();
+  checkListEmpty();
 };
 
 export default renderProjectsPage;

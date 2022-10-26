@@ -179,18 +179,7 @@ const renderTaskPage = () => {
     const taskDescription = document.querySelector(
       "[name='description']"
     ).value;
-    if (!editMode) {
-      allTaskArray.push(
-        new Task(
-          taskName,
-          projectName,
-          taskDate,
-          taskPriority,
-          taskDescription,
-          false
-        )
-      );
-    } else {
+    if(editMode){
       allTaskArray[index] = new Task(
         taskName,
         projectName,
@@ -201,6 +190,18 @@ const renderTaskPage = () => {
       );
       //switch off edit mode
       editMode = false;
+    }
+   else {
+      allTaskArray.push(
+        new Task(
+          taskName,
+          projectName,
+          taskDate,
+          taskPriority,
+          taskDescription,
+          false
+        )
+      );
     }
 
     renderAll();
