@@ -1,12 +1,12 @@
 import {
   Task,
   allTaskArray,
- 
+  updateProjects,
   getProjectsNames,
   lowerCaseDashed,
-  updateProjects,
   content,
   clearContent,
+ 
 } from "./index";
 
 const renderTaskPage = () => {
@@ -173,7 +173,7 @@ const renderTaskPage = () => {
   const submittedNewTask = (event) => {
     event.preventDefault();
     const taskName = document.querySelector("[name='name']").value;
-    const projectName = document.querySelector("[name='project-name']").value;
+    const projectName =document.querySelector("[name='project-name']").value;
     const taskDate = document.querySelector("[name='date']").value;
     const taskPriority = document.querySelector("[name='priority']").value;
     const taskDescription = document.querySelector(

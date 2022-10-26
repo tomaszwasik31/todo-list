@@ -16,7 +16,7 @@ class Task {
 let allTaskArray = [
   new Task(
     "Do dishes",
-    "household duties",
+    "Household duties",
     "2022-10-30",
     "low",
     "lorem ipusm lorem lorem lorem lorem",
@@ -24,7 +24,7 @@ let allTaskArray = [
   ),
   new Task(
     "Walk a dog",
-    "household duties",
+    "Household duties",
     "2022-10-30",
     "medium",
     "lorem ipusm lorem lorem lorem lorem",
@@ -48,11 +48,20 @@ let allTaskArray = [
   ),
 ];
 
+let allProjectsNames;
 
 const getProjectsNames = () => {
-  let allProjectsNames = allTaskArray.map((task) => task.projectName);
+  allProjectsNames = allTaskArray.map((task) => task.projectName);
+  capitalizeWords(allProjectsNames);
+  //Always keep 'None' project name
+  allProjectsNames.push("None");
   //remove duplicates
   allProjectsNames = [...new Set(allProjectsNames)];
+};
+const capitalizeWords = (arr) => {
+  return arr.map((element) => {
+    return element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
+  });
 };
 const lowerCaseDashed = (str) => {
   return str.replace(/\s+/g, "-").toLowerCase();
@@ -62,18 +71,12 @@ const updateProjects = () => {
 
   //clean first
   projectSelect.innerHTML = "";
-  // always 'none' as a projects available
-  const option = document.createElement("option");
-  option.innerHTML = "None";
-  option.id = "None";
-  option.value = "None";
-  projectSelect.appendChild(option);
 
   allProjectsNames.forEach((e) => {
     const option = document.createElement("option");
-    option.innerHTML = e;
+    option.innerText = e;
     option.id = lowerCaseDashed(e);
-    option.value = lowerCaseDashed(e);
+    option.value = e;
     projectSelect.appendChild(option);
   });
 };
@@ -91,7 +94,6 @@ const bindMenuEvents = () => {
 bindMenuEvents();
 
 renderTaskPage();
-
 
 export {
   Task,
