@@ -8,7 +8,7 @@ import {
   clearContent,
 } from "./index";
 
-import { showHideForm } from "./index";
+import { showHideForm } from "./forms";
 
 const renderTaskPage = () => {
   clearContent();

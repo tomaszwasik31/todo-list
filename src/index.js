@@ -1,5 +1,6 @@
 import renderProjectsPage from "./projects";
 import renderTaskPage from "./task";
+import { showHideForm } from "./forms";
 
 const content = document.querySelector("#content");
 class Task {
@@ -92,12 +93,8 @@ const bindBtns = () => {
   taskBtn.addEventListener("click", renderTaskPage);
 
   const cancelBtn = document.querySelector("#form-btn-cancel");
-cancelBtn.addEventListener("click", showHideForm);
+  cancelBtn.addEventListener("click", showHideForm);
 };
-
-
-
-
 
 bindBtns();
 renderTaskPage();
