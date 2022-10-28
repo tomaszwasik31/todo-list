@@ -6,8 +6,9 @@ import {
   lowerCaseDashed,
   content,
   clearContent,
- 
 } from "./index";
+
+import { showHideForm } from "./index";
 
 const renderTaskPage = () => {
   clearContent();
@@ -109,9 +110,6 @@ const renderTaskPage = () => {
     const newTaskBtn = document.querySelector("#add-task-btn");
     newTaskBtn.addEventListener("click", newTaskForm);
 
-    const cancelBtn = document.querySelector("#form-btn-cancel");
-    cancelBtn.addEventListener("click", showHideForm);
-
     const statusTask = document.querySelectorAll(".status");
     statusTask.forEach((e) => {
       e.addEventListener("click", changeStatus);
@@ -135,13 +133,6 @@ const renderTaskPage = () => {
       formEditBtn.classList.toggle("hidden");
     }
     showHideForm();
-  };
-
-  const showHideForm = () => {
-    const form = document.querySelector(".form-wrapper");
-    form.classList.toggle("hidden");
-
-    resetForm();
   };
 
   const changeStatus = (e) => {
@@ -172,14 +163,15 @@ const renderTaskPage = () => {
 
   const submittedNewTask = (event) => {
     event.preventDefault();
+    console.log("submit");
     const taskName = document.querySelector("[name='name']").value;
-    const projectName =document.querySelector("[name='project-name']").value;
+    const projectName = document.querySelector("[name='project-name']").value;
     const taskDate = document.querySelector("[name='date']").value;
     const taskPriority = document.querySelector("[name='priority']").value;
     const taskDescription = document.querySelector(
       "[name='description']"
     ).value;
-    if(editMode){
+    if (editMode) {
       allTaskArray[index] = new Task(
         taskName,
         projectName,
@@ -190,8 +182,7 @@ const renderTaskPage = () => {
       );
       //switch off edit mode
       editMode = false;
-    }
-   else {
+    } else {
       allTaskArray.push(
         new Task(
           taskName,
@@ -231,10 +222,6 @@ const renderTaskPage = () => {
     }
   };
 
-  const resetForm = () => {
-    const form = document.querySelector("#form");
-    form.reset();
-  };
   const renderAll = () => {
     clearContent();
     getProjectsNames();

@@ -84,17 +84,23 @@ const clearContent = () => {
   content.innerHTML = "";
 };
 
-const bindMenuEvents = () => {
+const bindBtns = () => {
   const projectsBtn = document.querySelector("#btn-projects");
   projectsBtn.addEventListener("click", renderProjectsPage);
 
   const taskBtn = document.querySelector("#btn-task");
   taskBtn.addEventListener("click", renderTaskPage);
-};
-bindMenuEvents();
 
+  const cancelBtn = document.querySelector("#form-btn-cancel");
+cancelBtn.addEventListener("click", showHideForm);
+};
+
+
+
+
+
+bindBtns();
 renderTaskPage();
-renderProjectsPage();
 
 export {
   Task,
@@ -105,4 +111,5 @@ export {
   lowerCaseDashed,
   updateProjects,
   clearContent,
+  showHideForm,
 };

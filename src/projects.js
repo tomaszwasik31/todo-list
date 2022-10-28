@@ -68,19 +68,26 @@ const renderProjectsPage = () => {
     addBtn.innerText = "+ Add new project";
     content.appendChild(addBtn);
   };
+  const bindEvents = () => {
+    const newProjectBtn = document.querySelector("#add-task-btn");
+    newProjectBtn.addEventListener("click", newProjectForm);
+  };
 
   const checkListEmpty = () => {
     let taskList = document.querySelectorAll(".task-list");
-    taskList.forEach((e)=>{
-      if (e.innerHTML=='')
-      {
-         e.parentNode.remove();
+    taskList.forEach((e) => {
+      if (e.innerHTML == "") {
+        e.parentNode.remove();
       }
-    })
-   
+    });
+  };
+
+  const newProjectForm = () => {
+    
   };
   renderAllProjects();
   renderAddBtn();
+  bindEvents();
   checkListEmpty();
 };
 
