@@ -49,10 +49,10 @@ let allTaskArray = [
   ),
 ];
 
-let allProjectsNames;
+let  allProjectsNames = allTaskArray.map((task) => task.projectName);
 
 const getProjectsNames = () => {
-  allProjectsNames = allTaskArray.map((task) => task.projectName);
+ 
   capitalizeWords(allProjectsNames);
   //Always keep 'None' project name
   allProjectsNames.push("None");

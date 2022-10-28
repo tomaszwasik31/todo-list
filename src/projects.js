@@ -83,7 +83,13 @@ const renderProjectsPage = () => {
   };
 
   const newProjectForm = () => {
-    
+    let newProject = prompt("Please enter new Project name", "Project Name");
+    if (newProject == null) {
+      return;
+    }
+    console.log(allProjectsNames);
+    allProjectsNames.push(newProject);
+    console.log(allProjectsNames);
   };
   renderAllProjects();
   renderAddBtn();
